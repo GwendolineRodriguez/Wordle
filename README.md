@@ -1,2 +1,3 @@
-# wordle
+# Wordle
+
 A clone of the famous word game
