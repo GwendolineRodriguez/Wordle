@@ -1,0 +1,7 @@
+.word {
+}
+
+.word form {
+  display: flex;
+  gap: 0.2rem;
+}

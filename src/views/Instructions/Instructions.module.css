@@ -19,7 +19,8 @@
   position: absolute;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem 1rem;
+  margin: 1rem;
+  padding: 0 1rem;
 }
 
 .Instructions p {

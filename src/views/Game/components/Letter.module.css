@@ -1,0 +1,16 @@
+.letter {
+  width: 4rem;
+  height: 4rem;
+  background-color: rgb(39, 43, 63);
+  border: 0.1rem solid rgb(65, 67, 84);
+  color: white;
+  font-size: xx-large;
+  padding-left: 1.2rem;
+  text-transform: uppercase;
+}
+
+.letter:focus {
+  color: transparent;
+  text-shadow: 0 0 0 white;
+  outline: auto;
+}
