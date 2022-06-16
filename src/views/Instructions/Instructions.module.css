@@ -1,0 +1,27 @@
+.Instructions {
+  width: 100%;
+  height: 100vh;
+  margin: 1rem;
+  background-color: #202432;
+  margin: 0;
+  padding: 1rem 2rem;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Instructions header {
+  width: 100%;
+  display: flex;
+  top: 0;
+  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 1rem;
+}
+
+.Instructions p {
+  max-width: 30rem;
+}

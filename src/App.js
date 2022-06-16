@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import styles from "./App.module.css";
+import Game from "./views/Game/Game.js";
+import Instructions from "./views/Instructions/Instructions";
 
 function App() {
+  let [showInstructions, setShowInstructions] = useState(false);
+
+  let toggleInstructions = () => {
+    console.log(showInstructions);
+    setShowInstructions((prev) => !prev);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={styles.App}>
+      {showInstructions && (
+        <Instructions toggleInstructions={toggleInstructions}></Instructions>
+      )}
+      <header className={styles.AppHeader}>
+        <h1>Wordle</h1>
+        <nav>
+          <button onClick={toggleInstructions}>?</button>
+        </nav>
       </header>
+      <main className={styles.main}>
+        <Game></Game>
+      </main>
     </div>
   );
 }
