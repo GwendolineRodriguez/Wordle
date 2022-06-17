@@ -23,7 +23,9 @@ function Word({ autofocus, submitWord }) {
   };
   let moveToNextLetter = (id) => {
     console.log(letterRefs[id]);
-    letterRefs[id].current.focus();
+    if (id < 5) {
+      letterRefs[id].current.focus();
+    }
   };
   return (
     <li className={styles.word}>
