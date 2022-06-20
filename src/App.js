@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./App.module.css";
 import Game from "./views/Game/Game.js";
+import { WordContextProvider } from "./views/Game/WordContext";
 import Instructions from "./views/Instructions/Instructions";
 
 function App() {
@@ -25,7 +26,9 @@ function App() {
         </nav>
       </header>
       <main className={styles.main}>
-        <Game></Game>
+        <WordContextProvider>
+          <Game></Game>
+        </WordContextProvider>
       </main>
     </div>
   );

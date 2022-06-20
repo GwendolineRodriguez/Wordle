@@ -8,7 +8,6 @@ function Word({ autofocus, submitWord }) {
   let handleWordSubmit = (e) => {
     e.preventDefault();
     submitWord(word);
-    console.log("word submitted");
   };
   let setLetter = (e) => {
     let id = Number.parseInt(e.target.id);
@@ -23,8 +22,8 @@ function Word({ autofocus, submitWord }) {
   };
 
   let moveToNextLetter = (id) => {
-    console.log(letterRefs[id]);
     if (id < 5) {
+      console.log(letterRefs[id]);
       letterRefs[id].current.focus();
     }
   };
