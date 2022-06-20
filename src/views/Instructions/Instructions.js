@@ -8,7 +8,9 @@ function Instructions({ toggleInstructions }) {
       <section className={styles.Instructions}>
         <header>
           <h2>How to play</h2>
-          <button onClick={toggleInstructions}>X</button>
+          <button onClick={toggleInstructions}>
+            <b>X</b>
+          </button>
         </header>
         <p>
           Guess the WORDLE in six tries. Each guess must be a valid five-letter

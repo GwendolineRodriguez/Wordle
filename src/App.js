@@ -19,7 +19,9 @@ function App() {
       <header className={styles.AppHeader}>
         <h1>Wordle</h1>
         <nav>
-          <button onClick={toggleInstructions}>?</button>
+          <button onClick={toggleInstructions}>
+            <b>?</b>
+          </button>
         </nav>
       </header>
       <main className={styles.main}>

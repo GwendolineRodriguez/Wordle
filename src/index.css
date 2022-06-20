@@ -19,4 +19,13 @@ code {
 
 button {
   cursor: pointer;
+  color: white;
+  background-color: #202432;
+  font-size: larger;
+  padding: 0.1rem 0.5rem;
+  border: 0.2rem solid white;
+}
+
+button:hover {
+  background-color: #686b785f;
 }
