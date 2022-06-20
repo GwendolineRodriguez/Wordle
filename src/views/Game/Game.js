@@ -4,8 +4,11 @@ import Word from "./components/Word.js";
 
 function Game() {
   let submitWord = (word) => {
-    console.log("result", word);
-    //use effect
+    console.log("result", word.join(""));
+
+    // use effect and check if valid word
+    // if valid goToNextWord()
+    // createRefs of first letter of next word
   };
   return (
     <>

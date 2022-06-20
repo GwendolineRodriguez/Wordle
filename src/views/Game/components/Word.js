@@ -10,7 +10,7 @@ function Word({ autofocus, submitWord }) {
     submitWord(word);
     console.log("word submitted");
   };
-  let handleInput = (e) => {
+  let setLetter = (e) => {
     let id = Number.parseInt(e.target.id);
     let value = e.target.value;
     setWord((prev) => {
@@ -21,6 +21,7 @@ function Word({ autofocus, submitWord }) {
       return newWordValue;
     });
   };
+
   let moveToNextLetter = (id) => {
     console.log(letterRefs[id]);
     if (id < 5) {
@@ -36,7 +37,7 @@ function Word({ autofocus, submitWord }) {
             <Letter
               key={i}
               id={i}
-              handleInput={handleInput}
+              setLetter={setLetter}
               autofocus={isFocused}
               refId={letterRefs[i]}
             ></Letter>
