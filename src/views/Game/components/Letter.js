@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Letter.module.css";
 
-function Letter({ id, setLetter, autofocus, refId }) {
+function Letter({ id, setLetter, autofocus, refId, letter }) {
   let tabIndex = id === 0 && autofocus ? 1 : -1;
 
   let handleLetterInput = (e) => {
@@ -24,6 +24,7 @@ function Letter({ id, setLetter, autofocus, refId }) {
       onChange={handleLetterInput}
       pattern='[A-Za-z]'
       tabIndex={tabIndex}
+      value={letter.value}
       required
     ></input>
   );

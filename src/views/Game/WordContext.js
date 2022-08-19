@@ -47,6 +47,7 @@ export const WordContextProvider = ({ children }) => {
     <WordContext.Provider
       value={{
         wordOfTheDay: wordOfTheDay,
+        currentWordId: 0,
         getWordOfTheDay: getWordOfTheDay,
         isWordValid: isWordValid,
       }}

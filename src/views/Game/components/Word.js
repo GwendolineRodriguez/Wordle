@@ -1,10 +1,20 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useEffect } from "react";
 import Letter from "./Letter.js";
 import styles from "./Word.module.css";
+import LetterState from "./../LetterState.js";
 
-function Word({ autofocus, submitWord }) {
-  let [word, setWord] = useState(new Array(5).fill(null));
-  let letterRefs = word.map((_) => createRef());
+function Word({ autofocus, submitWord, refIdFirstLetter }) {
+  let [word, setWord] = useState(
+    new Array(5).fill(null).map((_) => {
+      let letter = { value: "", state: LetterState.GREY };
+      return letter;
+    })
+  );
+
+  let letterRefs = word.map((_, i) => {
+    if (i === 0) return refIdFirstLetter;
+    return createRef();
+  });
   let handleWordSubmit = (e) => {
     e.preventDefault();
     submitWord(word);
@@ -14,7 +24,7 @@ function Word({ autofocus, submitWord }) {
     let value = e.target.value;
     setWord((prev) => {
       let newWordValue = prev;
-      newWordValue[id] = value;
+      newWordValue[id].value = value;
       console.log(newWordValue);
       moveToNextLetter(id + 1);
       return newWordValue;
@@ -30,12 +40,13 @@ function Word({ autofocus, submitWord }) {
   return (
     <li className={styles.word}>
       <form onSubmit={handleWordSubmit}>
-        {word.map((_, i) => {
+        {word.map((letter, i) => {
           let isFocused = i === 0 && autofocus ? true : false;
           return (
             <Letter
-              key={i}
               id={i}
+              key={i}
+              letter={letter}
               setLetter={setLetter}
               autofocus={isFocused}
               refId={letterRefs[i]}
