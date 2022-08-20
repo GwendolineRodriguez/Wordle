@@ -22,7 +22,7 @@ export const WordContextProvider = ({ children }) => {
 
   useEffect(() => {
     getWordOfTheDay();
-  }, []);
+  }, [getWordOfTheDay]);
 
   let isWordValid = async (submittedWord) => {
     let request = { word: submittedWord };

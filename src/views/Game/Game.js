@@ -5,12 +5,15 @@ import WordContext from "./WordContext.js";
 
 function Game() {
   const wordCtx = useContext(WordContext);
+  console.log(wordCtx);
+
   let [words, setWords] = useState(new Array(6).fill(null));
   let firstLetterWordRefs = words.map((_) => createRef());
 
   let goToNextWord = () => {
+    console.log(wordCtx);
     wordCtx.currentWordId++;
-    console.log(wordCtx.currentWordId);
+    // console.log(wordCtx.currentWordId);
     firstLetterWordRefs[wordCtx.currentWordId].current.focus();
   };
 
@@ -31,8 +34,9 @@ function Game() {
   return (
     <ul className={styles.game}>
       {words.map((_, i) => {
-        let autofocus = false;
-        if (i === 0) autofocus = true;
+        let autofocus = i === wordCtx.currentWordId;
+        // if (i === wordCtx.currentWordId) autofocus = true;
+        // console.log("autofocus", i, autofocus);
         return (
           <Word
             key={i}

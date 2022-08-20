@@ -1,4 +1,4 @@
-import React, { useState, createRef, useEffect } from "react";
+import React, { useState, createRef } from "react";
 import Letter from "./Letter.js";
 import styles from "./Word.module.css";
 import LetterState from "./../LetterState.js";
@@ -10,7 +10,6 @@ function Word({ autofocus, submitWord, refIdFirstLetter }) {
       return letter;
     })
   );
-
   let letterRefs = word.map((_, i) => {
     if (i === 0) return refIdFirstLetter;
     return createRef();
@@ -19,13 +18,12 @@ function Word({ autofocus, submitWord, refIdFirstLetter }) {
     e.preventDefault();
     submitWord(word);
   };
-  let setLetter = (e) => {
-    let id = Number.parseInt(e.target.id);
-    let value = e.target.value;
+  let updateWord = (targetId, value) => {
+    let id = Number.parseInt(targetId);
     setWord((prev) => {
       let newWordValue = prev;
       newWordValue[id].value = value;
-      console.log(newWordValue);
+      // console.log(newWordValue);
       moveToNextLetter(id + 1);
       return newWordValue;
     });
@@ -33,7 +31,6 @@ function Word({ autofocus, submitWord, refIdFirstLetter }) {
 
   let moveToNextLetter = (id) => {
     if (id < 5) {
-      console.log(letterRefs[id]);
       letterRefs[id].current.focus();
     }
   };
@@ -41,13 +38,13 @@ function Word({ autofocus, submitWord, refIdFirstLetter }) {
     <li className={styles.word}>
       <form onSubmit={handleWordSubmit}>
         {word.map((letter, i) => {
-          let isFocused = i === 0 && autofocus ? true : false;
+          let isFocused = i === 0 && autofocus;
           return (
             <Letter
               id={i}
               key={i}
               letter={letter}
-              setLetter={setLetter}
+              updateWord={updateWord}
               autofocus={isFocused}
               refId={letterRefs[i]}
             ></Letter>
