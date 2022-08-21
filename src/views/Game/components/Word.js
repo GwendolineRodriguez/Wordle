@@ -1,4 +1,4 @@
-import React, { useState, createRef, useEffect, useRef } from "react";
+import React, { useState, createRef, useEffect, useRef, useMemo } from "react";
 import Letter from "./Letter.js";
 import styles from "./Word.module.css";
 
@@ -10,31 +10,17 @@ function Word({
   refIdFirstLetter,
 }) {
   let [word, setWord] = useState(wordObj);
-  // let [letterRefs, setLetterRefs] = useState(
-  //   word.map((_, i) => {
-  //     if (i === 0) return refIdFirstLetter;
-  //     return createRef();
-  //   })
-  // );
+
+  let letterRefs = useMemo(
+    () =>
+      word.map((_, i) => {
+        if (i === 0) return refIdFirstLetter;
+        return createRef();
+      }),
+    []
+  );
+  // console.log(letterRefs);
   const isFirstRender = useRef(true);
-
-  // useEffect(() => {
-  //   if (isFirstRender.current) {
-  //     isFirstRender.current = false;
-  //     return;
-  //   }
-  //   setLetterRefs(
-  //     word.map((_, i) => {
-  //       if (i === 0) return refIdFirstLetter;
-  //       return createRef();
-  //     })
-  //   );
-  // }, []);
-  let letterRefs = word.map((_, i) => {
-    if (i === 0) return refIdFirstLetter;
-    return createRef();
-  });
-
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
@@ -42,9 +28,6 @@ function Word({
     }
     setWord(() => wordObj.map((item) => item));
   }, [joinedWord, wordObj]);
-
-  // const letterRefs = useMemo(() => new Array(6).fill(createRef()), []);
-  // letterRefs[0] = refIdFirstLetter;
 
   let handleWordSubmit = (e) => {
     e.preventDefault();
@@ -73,7 +56,7 @@ function Word({
           let isFocused = i === 0 && autofocus;
           return (
             <Letter
-              id={i}
+              idx={i}
               key={i}
               state={letter.state}
               updateWord={updateWord}

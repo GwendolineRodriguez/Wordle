@@ -8,14 +8,19 @@ function Game() {
   const wordCtx = useContext(WordContext);
 
   let [words, setWords] = useState(
-    new Array(6).fill(
-      new Array(5).fill(null).map((_) => {
-        let letter = { value: "", state: LetterState.GREY };
+    new Array(6).fill(null).map(() =>
+      new Array(5).fill(null).map((_, i) => {
+        let letter = {
+          value: "",
+          state: LetterState.GREY,
+          // TODO : make this work to avoid many rerender
+          // id: `${i}-${useId()}`,
+        };
         return letter;
       })
     )
   );
-  const firstLetterWordRefs = useMemo(() => new Array(6).fill(createRef()), []);
+  const firstLetterWordRefs = useMemo(() => words.map((_) => createRef()), []);
 
   let goToNextWord = () => {
     wordCtx.currentWordId++;
@@ -26,12 +31,12 @@ function Game() {
     let idx = 0;
     setWords((prev) => {
       let updatedWords = prev.map((item, i) => {
-        if (item !== null) {
+        if (item[0].value !== "") {
           idx = i;
-          return item;
         }
-        return null;
+        return item;
       });
+
       updatedWords.splice(idx, 1, word);
       return updatedWords;
     });
@@ -63,7 +68,6 @@ function Game() {
     <ul className={styles.game}>
       {words.map((word, i) => {
         let autofocus = i === wordCtx.currentWordId;
-        console.log("render word ?");
         let joinedWord = word.map((letter) => letter.value).join("");
         return (
           <Word

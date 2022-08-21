@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useId } from "react";
 import LetterState from "../LetterState";
 import styles from "./Letter.module.css";
 
-function Letter({ id, updateWord, autofocus, refId, state }) {
-  let tabIndex = id === 0 && autofocus ? 1 : -1;
+function Letter({ idx, updateWord, autofocus, refId, state }) {
+  let tabIndex = idx === 0 && autofocus ? 1 : -1;
+  const id = `${idx}-${useId()}`;
   let [letterValue, setLetter] = useState("");
   let [style, setStyle] = useState(styles.letter);
-
   let getColor = (state) => {
     if (state === LetterState.GREEN) return `${styles.green}`;
     if (state === LetterState.YELLOW) return `${styles.yellow}`;
@@ -29,7 +29,8 @@ function Letter({ id, updateWord, autofocus, refId, state }) {
       e.target.value = "";
       return;
     }
-    updateWord(e.target.id, e.target.value);
+    let letterId = e.target.id.split("")[0];
+    updateWord(letterId, e.target.value);
     setLetter(e.target.value);
   };
 
