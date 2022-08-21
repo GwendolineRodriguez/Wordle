@@ -14,3 +14,15 @@
   text-shadow: 0 0 0 white;
   outline: auto;
 }
+
+.green {
+  background-color: #538d4e;
+}
+
+.yellow {
+  background-color: #b59f3b;
+}
+
+.grey {
+  background-color: rgb(39, 43, 63);
+}
