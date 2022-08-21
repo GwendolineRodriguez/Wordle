@@ -66,7 +66,15 @@ export const WordContextProvider = ({ children }) => {
     return updatedWord;
   };
 
-  let checkIfWordFound = (word) => {};
+  let checkIfWordFound = (word) => {
+    let isFound = true;
+    word.forEach((letter) => {
+      if (letter.state !== LetterState.GREEN) {
+        isFound = false;
+      }
+    });
+    return isFound;
+  };
 
   return (
     <WordContext.Provider

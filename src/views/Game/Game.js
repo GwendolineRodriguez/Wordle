@@ -1,4 +1,6 @@
 import React, { useContext, useState, createRef, useMemo } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "./Game.module.css";
 import Word from "./components/Word.js";
 import WordContext from "./WordContext.js";
@@ -45,7 +47,7 @@ function Game() {
   let checkEndGame = (word) => {
     let isWordFound = wordCtx.checkIfWordFound(word);
     if (isWordFound) {
-      // END GAME (toast you win)
+      toast.success("❤️ You found the word 🥳");
     } else {
       goToNextWord();
       console.log("Word of the day is", wordCtx.wordOfTheDay);
@@ -56,7 +58,7 @@ function Game() {
     let wordIsValid = await wordCtx.isWordValid(word);
     if (!wordIsValid) {
       console.log("Word is not Valid !!");
-      // toast that shows it's not valid and they have to refresh to play
+      toast.info("💥 Word is not valid 💥");
       return;
     }
     let updatedWord = wordCtx.checkLettersValidity(word, wordCtx.wordOfTheDay);
@@ -65,22 +67,34 @@ function Game() {
   };
 
   return (
-    <ul className={styles.game}>
-      {words.map((word, i) => {
-        let autofocus = i === wordCtx.currentWordId;
-        let joinedWord = word.map((letter) => letter.value).join("");
-        return (
-          <Word
-            key={i}
-            joinedWord={joinedWord}
-            wordObj={word}
-            autofocus={autofocus}
-            submitWord={submitWord}
-            refIdFirstLetter={firstLetterWordRefs[i]}
-          ></Word>
-        );
-      })}
-    </ul>
+    <>
+      <ToastContainer
+        theme='dark'
+        position='top-center'
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnHover
+      />
+      <ul className={styles.game}>
+        {words.map((word, i) => {
+          let autofocus = i === wordCtx.currentWordId;
+          let joinedWord = word.map((letter) => letter.value).join("");
+          return (
+            <Word
+              key={i}
+              joinedWord={joinedWord}
+              wordObj={word}
+              autofocus={autofocus}
+              submitWord={submitWord}
+              refIdFirstLetter={firstLetterWordRefs[i]}
+            ></Word>
+          );
+        })}
+      </ul>
+    </>
   );
 }
 
