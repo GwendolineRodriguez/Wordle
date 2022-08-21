@@ -12,10 +12,21 @@ function Instructions({ toggleInstructions }) {
             <b>X</b>
           </button>
         </header>
+        <p>Guess the WORDLE in six tries.</p>
         <p>
-          Guess the WORDLE in six tries. Each guess must be a valid five-letter
-          word. Hit the enter button to submit. After each guess, the color of
-          the tiles will change to show how close your guess was to the word.
+          <br />
+          Each guess must be a valid five-letter word.
+        </p>
+        <p>
+          <br />
+          Hit the enter button to submit.
+        </p>
+        <p>
+          <br />
+          After each guess, the color of the tiles will change to show how close
+          your guess was to the word.{" "}
+        </p>
+        <p>
           <br />A new WORDLE will be available each day!
         </p>
       </section>

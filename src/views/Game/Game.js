@@ -57,7 +57,7 @@ function Game() {
   let submitWord = async (word) => {
     let wordIsValid = await wordCtx.isWordValid(word);
     if (!wordIsValid) {
-      console.log("Word is not Valid !!");
+      console.error("Word is not Valid !!");
       toast.info("💥 Word is not valid 💥");
       return;
     }
