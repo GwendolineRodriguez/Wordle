@@ -13,11 +13,11 @@ function Word({
 
   let letterRefs = useMemo(
     () =>
-      word.map((_, i) => {
+      new Array(5).fill(null).map((_, i) => {
         if (i === 0) return refIdFirstLetter;
         return createRef();
       }),
-    []
+    [refIdFirstLetter]
   );
   const isFirstRender = useRef(true);
   useEffect(() => {
@@ -33,7 +33,6 @@ function Word({
     submitWord(word);
   };
   let updateWord = (targetId, value) => {
-    console.log(targetId);
     let letterId = targetId.split("")[0];
     let id = Number.parseInt(letterId);
     setWord((prev) => {

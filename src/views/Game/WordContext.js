@@ -63,7 +63,6 @@ export const WordContextProvider = ({ children }) => {
       };
       return newLetter;
     });
-    console.table(updatedWord);
     return updatedWord;
   };
 

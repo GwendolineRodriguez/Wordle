@@ -19,7 +19,6 @@ function Letter({ idx, updateWord, autofocus, refId, state }) {
       isFirstRender.current = false;
       return;
     }
-    console.log("letter style is updated");
     let color = getColor(state);
     setStyle(`${styles.letter} ${color}`);
   }, [state]);
