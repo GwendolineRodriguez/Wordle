@@ -1,3 +1,3 @@
 # Wordle
 
-A clone of the famous word game
+A clone of the famous word game in React
