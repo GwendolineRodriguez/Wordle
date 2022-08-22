@@ -29,8 +29,7 @@ function Letter({ idx, updateWord, autofocus, refId, state }) {
       e.target.value = "";
       return;
     }
-    let letterId = e.target.id.split("")[0];
-    updateWord(letterId, e.target.value);
+    updateWord(e.target.id, e.target.value);
     setLetter(e.target.value);
   };
 

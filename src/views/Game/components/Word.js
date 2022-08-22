@@ -19,7 +19,6 @@ function Word({
       }),
     []
   );
-  // console.log(letterRefs);
   const isFirstRender = useRef(true);
   useEffect(() => {
     if (isFirstRender.current) {
@@ -34,7 +33,9 @@ function Word({
     submitWord(word);
   };
   let updateWord = (targetId, value) => {
-    let id = Number.parseInt(targetId);
+    console.log(targetId);
+    let letterId = targetId.split("")[0];
+    let id = Number.parseInt(letterId);
     setWord((prev) => {
       let newWordValue = prev;
       newWordValue[id].value = value;
@@ -48,7 +49,6 @@ function Word({
       letterRefs[id].current.focus();
     }
   };
-  // console.log("Rerendering", word);
   return (
     <li className={styles.word}>
       <form onSubmit={handleWordSubmit}>
@@ -56,8 +56,8 @@ function Word({
           let isFocused = i === 0 && autofocus;
           return (
             <Letter
-              idx={i}
-              key={i}
+              idx={letter.id}
+              key={letter.id}
               state={letter.state}
               updateWord={updateWord}
               autofocus={isFocused}

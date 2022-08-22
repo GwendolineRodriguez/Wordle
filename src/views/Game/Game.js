@@ -1,4 +1,4 @@
-import React, { useContext, useState, createRef, useMemo } from "react";
+import React, { useContext, useState, createRef, useMemo, useId } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Game.module.css";
@@ -8,21 +8,23 @@ import LetterState from "./LetterState.js";
 
 function Game() {
   const wordCtx = useContext(WordContext);
-
   let [words, setWords] = useState(
-    new Array(6).fill(null).map(() =>
+    new Array(6).fill(null).map((_) =>
       new Array(5).fill(null).map((_, i) => {
         let letter = {
           value: "",
           state: LetterState.GREY,
-          // TODO : make this work to avoid many rerender
-          // id: `${i}-${useId()}`,
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          id: `${i}-${useId()}`,
         };
         return letter;
       })
     )
   );
-  const firstLetterWordRefs = useMemo(() => words.map((_) => createRef()), []);
+  const firstLetterWordRefs = useMemo(
+    () => new Array(6).fill(null).map(() => createRef()),
+    []
+  );
 
   let goToNextWord = () => {
     wordCtx.currentWordId++;

@@ -59,6 +59,7 @@ export const WordContextProvider = ({ children }) => {
       let newLetter = {
         value: letter.value,
         state: getLetterState(letter.value, i, wordArray, splitWordOfTheDay),
+        id: letter.id,
       };
       return newLetter;
     });

@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Instructions.module.css";
 
 function Instructions({ toggleInstructions }) {
-  console.log("Instructions");
   return (
     <>
       <section className={styles.Instructions}>

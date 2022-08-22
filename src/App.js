@@ -8,7 +8,6 @@ function App() {
   let [showInstructions, setShowInstructions] = useState(false);
 
   let toggleInstructions = () => {
-    console.log(showInstructions);
     setShowInstructions((prev) => !prev);
   };
 
